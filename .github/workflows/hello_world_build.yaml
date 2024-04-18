@@ -35,4 +35,4 @@ jobs:
       - name: build
         working-directory: zephyr
         run: |
-          west build -b rtl8762gn_evb -t menuconfig samples/hello_world
+          west build -b rtl8762gn_evb samples/hello_world
