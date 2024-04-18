@@ -15,19 +15,19 @@ jobs:
           ls /opt/toolchains/zephyr-sdk-${ZSDK_VERSION}
           /opt/toolchains/zephyr-sdk-${ZSDK_VERSION}/setup.sh -c
 
-     - name: Checkout the code
-      uses: actions/checkout@v4
-      with:
-        path: zephyrproject
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          path: zephyrproject
 
-     - name: west update
-       working-directory: zephyrproject
-       run: |
-        west update
-        west zephyr-export
+      - name: west update
+        working-directory: zephyrproject
+        run: |
+          west update
+          west zephyr-export
 
-     - name: build
-       working-directory: zephyrproject
-       run: |
-         west build -b rtl8762gn_evb -t menuconfig samples/hello_world
+      - name: build
+        working-directory: zephyrproject
+        run: |
+          west build -b rtl8762gn_evb -t menuconfig samples/hello_world
 
