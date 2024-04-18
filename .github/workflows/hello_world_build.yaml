@@ -1,0 +1,33 @@
+name: hello_world build
+run-name: ${{ github.actor }} is doing west build 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/zephyrproject-rtos/ci:v0.26.11
+      options: '--entrypoint /bin/bash'
+
+    steps:
+      - name: setup sdk
+        run: |
+          whoami
+          ls /opt/toolchains/zephyr-sdk-${ZSDK_VERSION}
+          /opt/toolchains/zephyr-sdk-${ZSDK_VERSION}/setup.sh -c
+
+     - name: Checkout the code
+      uses: actions/checkout@v4
+      with:
+        path: zephyrproject
+
+     - name: west update
+       working-directory: zephyrproject
+       run: |
+        west update
+        west zephyr-export
+
+     - name: build
+       working-directory: zephyrproject
+       run: |
+         west build -b rtl8762gn_evb -t menuconfig samples/hello_world
+
