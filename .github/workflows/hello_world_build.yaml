@@ -9,10 +9,6 @@ jobs:
       options: '--entrypoint /bin/bash'
 
     steps:
-      - name: pre-print
-        run: |
-           cd ~/.cmake/packages/Zephyr-sdk
-           pwd
       - name: setup sdk
         run: |
           pwd
