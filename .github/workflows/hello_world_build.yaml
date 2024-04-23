@@ -31,8 +31,10 @@ jobs:
       - name: list
         run: |
           ls -al
+          df -h
 
       - name: build
         working-directory: zephyr
         run: |
           west build -b rtl8762gn_evb samples/hello_world
+
